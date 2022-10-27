@@ -12,7 +12,7 @@ export const CountryCard = ({ name, flag, population, region, capital }: Country
       <img src={flag} alt={`${name} flag`} className="" />
       <div id="info" className="py-4 px-2">
         <h2 className="m-4 font-bold text-xl">{name}</h2> 
-        <CardInfo infoName="Population" infoText={population} />
+        <CardInfo infoName="Population" infoText={population.toLocaleString("en-us")} />
         <CardInfo infoName="Region" infoText={region} />
         <CardInfo infoName="Capital" infoText={capital} />
       </div>

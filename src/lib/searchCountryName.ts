@@ -24,6 +24,8 @@ export const searchCountryByName: (name: string) => Promise<Country[] | undefine
     if (result.status >= 500) {
       throw new Error("Internal error");
     }
+
+    throw new Error(`Unexpected error. ${result.statusText} (${result.status})`);
   }
 
   const jsonResult = await result.json().catch((error: Error) => console.log(error));
