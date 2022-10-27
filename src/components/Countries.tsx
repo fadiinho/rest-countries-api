@@ -5,32 +5,31 @@ import { KeyboardEvent, useState } from "react";
 
 import { searchCountryByName } from "../lib/searchCountryName";
 
-
+const Error = ({ error }: { error: string }) => {
+  return <p>{error}</p>
+}
 
 export const Countries = () => {
   const [value, setValue] = useState("");
+  const [error, setError] = useState("");
 
-  const [countries, setCountries] = useState<Country[]>([{
-    name: "Brazil",
-    population: "206.135.893",
-    region: "Americas",
-    capital: "Brasília",
-    flag: "https://flagcdn.com/w320/br.png"
-  }])
+  const [countries, setCountries] = useState<Country[]>([])
 
   const search = async () => {
     if (!value) return;
-
-    const result = await searchCountryByName(value);
+    setError("")
 
     setValue("");
 
-    if (!result) return;
-    setCountries(result);
+    const result = await searchCountryByName(value).catch((error: Error) => setError(error.message));
 
+    if (!result) return;
+
+    setCountries(result);
   }
+
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.code !== "Enter") return;
+    if (event.key !== "Enter") return;
     search()
   }
 
@@ -46,7 +45,8 @@ export const Countries = () => {
           onKeyDown={handleKeyDown}
         />
       </div>
-      {countries.map((country) => <CountryCard key={country.name} {...country} />)}
+      {!error && countries.map((country) => <CountryCard key={country.name} {...country} />)}
+      {error && <Error error={error}/>}
     </div>
   )
 };

@@ -8,7 +8,7 @@ const CardInfo = ({ infoName, infoText }: { infoName: string, infoText: string  
 
 export const CountryCard = ({ name, flag, population, region, capital }: Country) => {
   return (
-    <div className="rounded overflow-hidden bg-white dark:bg-dark-blue drop-shadow-xl">
+    <div className="m-8 rounded overflow-hidden bg-white dark:bg-dark-blue drop-shadow-xl">
       <img src={flag} alt={`${name} flag`} className="" />
       <div id="info" className="py-4 px-2">
         <h2 className="m-4 font-bold text-xl">{name}</h2> 

@@ -2,12 +2,31 @@ import { Country } from "../../types/utils";
 
 const BASE_API = "https://restcountries.com/v3.1";
 
-export const searchCountryByName: (name: string) => Promise<Country[]> = async (name: string) => {
-  const result = await fetch(`${BASE_API}/name/${name}`);
+export const searchCountryByName: (name: string) => Promise<Country[] | undefined> = async (name: string) => {
+  const result = await fetch(`${BASE_API}/name/${name}`).catch((error) => {
+    console.error(error.message);
+    return;
+  });
 
-  if (!result.ok) return;
+  if (!result) {
+    throw new Error("Unexpected error")
+  }
 
-  const jsonResult = await result.json();
+  if (!result.ok) {
+    if (result.status === 404) {
+      throw new Error("Country not found");
+    }
+
+    if (result.status >= 400) {
+      throw new Error(result.statusText);
+    }
+
+    if (result.status >= 500) {
+      throw new Error("Internal error");
+    }
+  }
+
+  const jsonResult = await result.json().catch((error: Error) => console.log(error));
 
   if (!jsonResult) return;
 
