@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <div className="w-full h-full text-very-dark-blue-2 bg-very-light-gray dark:text-white dark:bg-very-dark-blue flex flex-col">
+      <div className="w-full min-h-full text-very-dark-blue-2 bg-very-light-gray dark:text-white dark:bg-very-dark-blue flex flex-col">
         <Navbar />
         <Countries />
       </div>

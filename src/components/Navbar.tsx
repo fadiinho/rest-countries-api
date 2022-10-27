@@ -1,6 +1,5 @@
 import { useContext } from "react";
-import { SunIcon, MoonIcon } from "@heroicons/react/20/solid";
-
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 const Icon = ({ theme, className }: { theme: string, className: string }) => {
