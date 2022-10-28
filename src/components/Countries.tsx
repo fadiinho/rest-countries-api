@@ -6,7 +6,7 @@ import { KeyboardEvent, useState } from "react";
 import { searchCountryByName } from "../lib/searchCountryName";
 
 const Error = ({ error }: { error: string }) => {
-  return <p>{error}</p>
+  return <p className="text-red-600">{error}</p>
 }
 
 export const Countries = () => {
