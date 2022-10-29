@@ -75,7 +75,7 @@ export const Countries = () => {
 
         <div className="sm:m-0 bg-white dark:bg-dark-blue flex items-center self-start sm:self-center relative rounded drop-shadow">
           <select
-            className="p-4 min-h-full bg-white dark:bg-dark-blue rounded"
+            className="p-4 min-h-full bg-white dark:bg-dark-blue rounded cursor-pointer"
             onChange={(event) => setFilter(event.target.value)}
             value={filter}
           >
